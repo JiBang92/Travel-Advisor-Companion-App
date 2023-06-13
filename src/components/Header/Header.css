@@ -1,0 +1,31 @@
+.search {
+  position: relative;
+  border-radius: 50px;
+  background-color: white;
+  margin-right: 10px;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.search:hover {
+  background-color: grey;
+}
+
+.searchIcon {
+  padding: 5px;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputRoot {
+  color: "inherit";
+}
+
+.inputInput {
+  padding: 15px;
+  padding-left: 15px;
+  width: 100%;
+}

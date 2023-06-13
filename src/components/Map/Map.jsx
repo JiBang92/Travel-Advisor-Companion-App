@@ -1,10 +1,8 @@
-import "./styles";
 import GoogleMapReact from "google-map-react";
-import { Paper, Typography, useMediaQuery } from "@material-ui/core";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-import Rating from "@material-ui/lab/Rating";
-import useStyles from "./styles";
+import { Paper, Typography, useMediaQuery, Rating } from "@mui/material";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import mapStyles from "./mapStyles";
+import "./Map.css";
 
 const Map = ({
   coordinates,
@@ -13,12 +11,10 @@ const Map = ({
   places,
   setChildClicked,
 }) => {
-  const classes = useStyles();
-  // useMediaQuery will be false if width is larger than 600px
   const isDesktop = useMediaQuery("(min-width: 600px)");
 
   return (
-    <div className={classes.mapContainer}>
+    <div className="mapContainer">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         center={coordinates}
@@ -39,7 +35,7 @@ const Map = ({
       >
         {places?.map((place, i) => (
           <div
-            className={classes.markerContainer}
+            className="markerContainer"
             lat={Number(place.latitude)}
             lng={Number(place.longitude)}
             key={i}
@@ -47,16 +43,12 @@ const Map = ({
             {!isDesktop ? (
               <LocationOnOutlinedIcon color="primary" fontSize="large" />
             ) : (
-              <Paper elevation={3} className={classes.paper}>
-                <Typography
-                  className={classes.typography}
-                  variant="subtitle2"
-                  gutterBottom
-                >
+              <Paper elevation={3} className="paper">
+                <Typography variant="subtitle2" gutterBottom>
                   {place.name}
                 </Typography>
                 <img
-                  className={classes.pointer}
+                  className="pointer"
                   src={
                     place.photo
                       ? place.photo.images.large.url

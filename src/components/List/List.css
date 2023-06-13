@@ -1,0 +1,10 @@
+.container {
+  padding: 25px;
+}
+
+.loading {
+  height: 600px;
+  display: "flex";
+  justify-content: center;
+  align-items: center;
+}

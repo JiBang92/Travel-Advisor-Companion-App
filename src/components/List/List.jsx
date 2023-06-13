@@ -7,9 +7,9 @@ import {
   MenuItem,
   FormControl,
   Select,
-} from "@material-ui/core";
-import useStyles from "./styles";
+} from "@mui/material";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
+import "./List.css";
 
 const List = ({
   places,
@@ -20,7 +20,6 @@ const List = ({
   rating,
   setRating,
 }) => {
-  const classes = useStyles();
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
@@ -32,17 +31,22 @@ const List = ({
   }, [places, elRefs]);
 
   return (
-    <div className={classes.container}>
-      <Typography variant="h4">
+    <div className="container">
+      <Typography variant="h4" sx={{ marginBottom: "15px" }}>
         Restaurants, Hotels, & Attractions Around You
       </Typography>
       {isLoading ? (
-        <div className={classes.loading}>
+        <div className="loading">
           <CircularProgress size="5rem" />
         </div>
       ) : (
         <>
-          <FormControl className={classes.formControl}>
+          <FormControl
+            sx={{
+              minWidth: 120,
+              marginBottom: "30px",
+            }}
+          >
             <InputLabel>Type</InputLabel>
             <Select value={type} onChange={(e) => setType(e.target.value)}>
               <MenuItem value="restaurants">Restaurants</MenuItem>
@@ -50,7 +54,12 @@ const List = ({
               <MenuItem value="attractions">Attractions</MenuItem>
             </Select>
           </FormControl>
-          <FormControl className={classes.formControl}>
+          <FormControl
+            sx={{
+              minWidth: 120,
+              marginBottom: "30px",
+            }}
+          >
             <InputLabel>Rating</InputLabel>
             <Select value={rating} onChange={(e) => setRating(e.target.value)}>
               <MenuItem value={0}>All</MenuItem>
@@ -59,7 +68,14 @@ const List = ({
               <MenuItem value={4.5}>Above 4.5</MenuItem>
             </Select>
           </FormControl>
-          <Grid container spacing={3} className={classes.list}>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              height: "75vh",
+              overflow: "auto",
+            }}
+          >
             {places.length ? (
               places.map((place, i) => (
                 <Grid item key={i} xs={12}>

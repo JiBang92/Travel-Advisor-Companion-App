@@ -7,15 +7,14 @@ import {
   CardContent,
   CardActions,
   Chip,
-} from "@material-ui/core";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import PhoneIcon from "@material-ui/icons/Phone";
-import Rating from "@material-ui/lab/Rating";
-import useStyles from "./styles";
+  Rating,
+} from "@mui/material";
+import {
+  LocationOn as LocationOnIcon,
+  Phone as PhoneIcon,
+} from "@mui/icons-material";
 
 const PlaceDetails = ({ place, selected, refProp }) => {
-  const classes = useStyles();
-
   if (selected)
     refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -35,7 +34,12 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           {place.name}
         </Typography>
         {place?.cuisine?.map(({ name }) => (
-          <Chip key={name} size="small" label={name} className={classes.chip} />
+          <Chip
+            key={name}
+            size="small"
+            label={name}
+            sx={{ margin: "5px 5px 5px 0" }}
+          />
         ))}
         <Box display="flex" justifyContent="space-between">
           <Rating value={Number(place.rating)} readOnly />
@@ -74,7 +78,12 @@ const PlaceDetails = ({ place, selected, refProp }) => {
             gutterBottom
             variant="subtitle2"
             color="textSecondary"
-            className={classes.subtitle}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginTop: "10px",
+            }}
           >
             <LocationOnIcon /> {place.address}
           </Typography>
@@ -84,7 +93,11 @@ const PlaceDetails = ({ place, selected, refProp }) => {
             gutterBottom
             variant="subtitle2"
             color="textSecondary"
-            className={classes.spacing}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
           >
             <PhoneIcon /> {place.phone}
           </Typography>
